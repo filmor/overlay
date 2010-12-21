@@ -1,0 +1,12 @@
+diff -urN Dharma_beta2/xbmc/utils/WebServer.cpp Dharma_beta2-patched/xbmc/utils/WebServer.cpp
+--- Dharma_beta2/xbmc/utils/WebServer.cpp	2010-09-14 14:30:12.000000000 +0930
++++ Dharma_beta2-patched/xbmc/utils/WebServer.cpp	2010-09-16 22:47:02.000000000 +0930
+@@ -357,7 +357,7 @@
+     // MHD_USE_THREAD_PER_CONNECTION = one thread per connection
+     // MHD_USE_SELECT_INTERNALLY = use main thread for each connection, can only handle one request at a time [unless you set the thread pool size]
+ 
+-    m_daemon = MHD_start_daemon(MHD_USE_SELECT_INTERNALLY | MHD_USE_IPv6,
++    m_daemon = MHD_start_daemon(MHD_USE_SELECT_INTERNALLY,
+                                 port,
+                                 NULL,
+                                 NULL,

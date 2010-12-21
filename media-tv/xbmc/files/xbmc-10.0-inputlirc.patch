@@ -1,0 +1,19 @@
+diff -urN Dharma_beta2/xbmc/utils/WebServer.cpp Dharma_beta2-patched/xbmc/utils/WebServer.cpp
+--- Dharma_beta2/guilib/common/LIRC.cpp	2010-09-14 14:30:12.000000000 +0930
++++ Dharma_beta2-patched/guilib/common/LIRC.cpp	2010-09-16 22:47:02.000000000 +0930
+@@ -277,9 +277,13 @@
+     }
+ 
+     m_button = CButtonTranslator::GetInstance().TranslateLircRemoteString(deviceName, buttonName);
++	char *errPtr = NULL;
++	long repeat = strtol(repeatStr,&errPtr,10);
++	if (errPtr != NULL && *errPtr != '\0') {
++		CLog::Log(LOGERROR, "LIRC %s: invalid non numerical char in %s", __FUNCTION__,repeatStr);
++	}
+ 
+-    int repeat = atol(repeatStr);
+-    if (strcmp(repeatStr, "00") == 0)
++    if (repeat== 0)
+     {
+       CLog::Log(LOGDEBUG, "LIRC: %s - NEW at %d:%s (%s)", __FUNCTION__, now, m_buf, buttonName);
+       m_firstClickTime = now;
