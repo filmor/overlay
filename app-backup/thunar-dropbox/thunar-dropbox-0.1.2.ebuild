@@ -4,7 +4,7 @@
 
 EAPI=3
 
-inherit waf-utils
+inherit waf-utils gnome2-utils
 
 DESCRIPTION="Thunar Dropbox plugin"
 HOMEPAGE="http://www.softwarebakery.com/maato/thunar-dropbox.html"
@@ -22,5 +22,21 @@ RDEPEND="${DEPEND}"
 src_prepare() {
 	epatch "${FILESDIR}/${PN}-provider.patch" \
 		   "${FILESDIR}/${PN}-wscript.patch"
+}
+
+pkg_preinst() {
+	gnome2_icon_savelist
+}
+
+pkg_postinst() {
+	gnome2_icon_cache_update
+}
+
+pkg_prerm() {
+	gnome2_icon_savelist
+}
+
+pkg_postrm() {
+	gnome2_icon_cache_update
 }
 
