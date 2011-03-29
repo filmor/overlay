@@ -1,0 +1,13 @@
+--- bin/gscan2pdf.orig
++++ bin/gscan2pdf
+@@ -128,8 +128,8 @@
+ 
+ use warnings;
+ use strict;
+-use forks 0.33;
+-use forks::shared;
++use threads;
++use threads::shared;
+ use Thread::Semaphore;
+ use Gscan2pdf;
+ use Gtk2 -init;
