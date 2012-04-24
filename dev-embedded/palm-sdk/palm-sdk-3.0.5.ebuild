@@ -17,7 +17,7 @@ LICENSE="PalmSDK"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 -*"
 MY_LINGUAS="linguas_de linguas_it linguas_pt_BR linguas_ru linguas_sv"
-IUSE="${MY_LINGUAS} -cross-compiler"
+IUSE="${MY_LINGUAS}"
 
 SLOT="3.0"
 
@@ -33,6 +33,8 @@ RDEPEND="|| (
 		net-libs/webkit-gtk:2
 		x11-libs/gtk+:2
 	)"
+
+QA_PREBUILT="opt/PalmPDK"
 
 QA_PRESTRIPPED_x86="
 	opt/PalmSDK/0.1/bin/palminspector
@@ -66,10 +68,6 @@ src_prepare() {
 		rm -rf opt/PalmSDK/0.1/lib/libproxy* || die
 	fi
 
-	if use cross-compiler ; then
-		rm -rf opt/PalmPDK/arm-gcc || die
-	fi
-
 	# Move freetype header files to the proper location
 	mv opt/PalmPDK/include/{freetype2/,}freetype
 	rmdir opt/PalmPDK/include/freetype2
@@ -95,12 +93,9 @@ src_install() {
 	insinto /opt/PalmPDK
 	doins -r opt/PalmPDK/*
 	fperms -R a+x /opt/PalmPDK/bin
-
-	if use cross-compiler ; then
-		fperms -R a+x /opt/PalmPDK/arm-gcc/bin
-		fperms -R a+x /opt/PalmPDK/arm-gcc/arm-none-linux-gnueabi/bin
-		fperms -R a+x /opt/PalmPDK/arm-gcc/libexec
-	fi
+	fperms -R a+x /opt/PalmPDK/arm-gcc/bin
+	fperms -R a+x /opt/PalmPDK/arm-gcc/arm-none-linux-gnueabi/bin
+	fperms -R a+x /opt/PalmPDK/arm-gcc/libexec
 
 	if use amd64 ; then
 		ewarn "palminspector does not work on amd64 due to missing 32bit libraries "
