@@ -2,17 +2,18 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
+EAPI=7
 
 inherit bash-completion-r1
 
-DESCRIPTION="Erlang build tool that makes it easy to compile and test Erlang applications and releases"
+DESCRIPTION="Erlang build tool that makes it easy to compile and test Erlang \
+applications and releases"
 HOMEPAGE="https://www.rebar3.org"
 SRC_URI="https://github.com/erlang/${PN}/archive/${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="Apache-2.0"
 SLOT="0"
-KEYWORDS="~amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc ~x86"
+KEYWORDS="amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc ~x86"
 IUSE="bash-completion zsh-completion fish-completion"
 
 RDEPEND="dev-lang/erlang"
@@ -33,4 +34,5 @@ src_install() {
 
 	if use bash-completion; then
 		dobashcomp priv/shell-completion/bash/${PN}
+	fi
 }
