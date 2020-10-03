@@ -99,6 +99,6 @@ src_install() {
 
 	if use zsh-completion; then
 		insinto /usr/share/zsh/site-functions
-		doins priv/shell-completions/zsh/_${PN}
+		doins priv/shell-completion/zsh/_${PN}
 	fi
 }

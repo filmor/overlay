@@ -1,0 +1,91 @@
+diff --git a/frescobaldi_app/app.py b/frescobaldi_app/app.py
+index 35e69bbe..eb5516d2 100644
+--- a/frescobaldi_app/app.py
++++ b/frescobaldi_app/app.py
+@@ -29,12 +29,6 @@ import sys
+ from PyQt5.QtCore import QSettings, Qt, QThread
+ from PyQt5.QtWidgets import QApplication
+ 
+-### needed for QWebEngine
+-### it wants those two things be done before constructing QApplication()
+-import PyQt5.QtWebEngineWidgets
+-QApplication.setAttribute(Qt.AA_ShareOpenGLContexts, True)
+-### end needed for QWebEngine
+-
+ import appinfo
+ 
+ qApp = None                     # instantiate() puts the QApplication obj. here
+diff --git a/frescobaldi_app/menu.py b/frescobaldi_app/menu.py
+index a6f1d69c..e2ff3d9a 100644
+--- a/frescobaldi_app/menu.py
++++ b/frescobaldi_app/menu.py
+@@ -493,8 +493,8 @@ def menu_help(mainwindow):
+     m.addAction(ac.help_manual)
+     m.addAction(ac.help_whatsthis)
+     m.addSeparator()
+-    m.addAction(panelmanager.manager(mainwindow).docbrowser.actionCollection.help_lilypond_doc)
+-    m.addAction(panelmanager.manager(mainwindow).docbrowser.actionCollection.help_lilypond_context)
++    # m.addAction(panelmanager.manager(mainwindow).docbrowser.actionCollection.help_lilypond_doc)
++    # m.addAction(panelmanager.manager(mainwindow).docbrowser.actionCollection.help_lilypond_context)
+     m.addSeparator()
+     m.addAction(ac.help_bugreport)
+     m.addSeparator()
+diff --git a/frescobaldi_app/objecteditor/widget.py b/frescobaldi_app/objecteditor/widget.py
+index 16aa3862..27582c6e 100644
+--- a/frescobaldi_app/objecteditor/widget.py
++++ b/frescobaldi_app/objecteditor/widget.py
+@@ -51,8 +51,8 @@ class Widget(QWidget):
+         self.mainwindow = tool.mainwindow()
+         self.define = None
+ 
+-        import panelmanager
+-        self.svgview = panelmanager.manager(tool.mainwindow()).svgview.widget().view
++        # import panelmanager
++        # self.svgview = panelmanager.manager(tool.mainwindow()).svgview.widget().view
+ 
+         layout = QVBoxLayout(spacing=1)
+         self.setLayout(layout)
+@@ -120,14 +120,14 @@ class Widget(QWidget):
+         """Disconnect from all graphical editing signals
+            when the panel isn't visible
+         """
+-        self.disconnectFromSvgView()
++        # self.disconnectFromSvgView()
+         event.accept()
+ 
+     def showEvent(self, event):
+         """Connect to the graphical editing signals
+            when the panel becomes visible
+         """
+-        self.connectToSvgView()
++        # self.connectToSvgView()
+         event.accept()
+ 
+     def callInsert(self):
+diff --git a/frescobaldi_app/panelmanager.py b/frescobaldi_app/panelmanager.py
+index 93096bf3..76f47e3c 100644
+--- a/frescobaldi_app/panelmanager.py
++++ b/frescobaldi_app/panelmanager.py
+@@ -68,9 +68,9 @@ class PanelManager(plugin.MainWindowPlugin):
+ 
+         # add the the panel stubs here
+         self.loadPanel("musicview.MusicViewPanel", "viewers")
+-        self.loadPanel("svgview.SvgViewPanel", "viewers")
++        ## self.loadPanel("svgview.SvgViewPanel", "viewers")
+         self.loadPanel("viewers.manuscript.ManuscriptViewPanel", "viewers")
+-        self.loadPanel("docbrowser.HelpBrowser", "viewers")
++        # self.loadPanel("docbrowser.HelpBrowser", "viewers")
+         self.loadPanel("logtool.LogTool", "viewers")
+         self.loadPanel("layoutcontrol.LayoutControlOptions", "viewers")
+         self.loadPanel("quickinsert.QuickInsertPanel", "coding")
+@@ -88,8 +88,8 @@ class PanelManager(plugin.MainWindowPlugin):
+         self.createActions()
+ 
+         # make some default arrangements
+-        mainwindow.tabifyDockWidget(self.musicview, self.docbrowser)
+-        mainwindow.tabifyDockWidget(self.musicview, self.svgview)
++        # mainwindow.tabifyDockWidget(self.musicview, self.docbrowser)
++        # mainwindow.tabifyDockWidget(self.musicview, self.svgview)
+ 
+ 
+     def loadPanel(self, name, submenu=None):
