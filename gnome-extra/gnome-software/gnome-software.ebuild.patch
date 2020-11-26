@@ -1,0 +1,36 @@
+--- a/gnome-extra/gnome-software/gnome-software-3.36.1.ebuild
++++ b/gnome-extra/gnome-software/gnome-software-3.36.1.ebuild
+@@ -11,7 +11,7 @@
+ LICENSE="GPL-2+"
+ SLOT="0"
+ KEYWORDS="~amd64 ~x86"
+-IUSE="+firmware gnome gtk-doc packagekit spell udev"
++IUSE="+flatpak +firmware gnome gtk-doc packagekit spell udev"
+ RESTRICT="test" # writes to and deletes files in /var/tmp/self-test/
+ 
+ RDEPEND="
+@@ -29,7 +29,6 @@
+ 	packagekit? ( >=app-admin/packagekit-base-1.1.0 )
+ 	firmware? ( >=sys-apps/fwupd-1.0.3 )
+ 	udev? ( dev-libs/libgudev )
++	flatpak? ( sys-apps/flatpak )
+ 	>=gnome-base/gsettings-desktop-schemas-3.11.5
+ "
+ DEPEND="${RDEPEND}"
+@@ -65,7 +64,7 @@
+ 		-Dpolkit=true
+ 		-Deos_updater=false # Endless OS updater
+ 		$(meson_use firmware fwupd)
++		$(meson_use flatpak)
+-		-Dflatpak=false
+ 		-Dmalcontent=false
+ 		-Drpm_ostree=false
+ 		-Dodrs=false
+@@ -75,6 +74,7 @@
+ 		-Dvalgrind=false
+ 		$(meson_use gtk-doc gtk_doc)
+ 		-Dhardcoded_popular=true
+		-Ddefault_featured_apps=false # TODO: Will this be beneficial to us with flatpak at least? If enabled, it shows some apps under installed (probably merely due to /usr/share/app-info presence), but launching and removal of them is broken
+ 		-Dmogwai=false #TODO?
+ 	)
+ 	meson_src_configure
