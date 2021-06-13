@@ -1,0 +1,16 @@
+BDEPEND=python_targets_python3_7? ( dev-lang/python:3.7 ) python_targets_python3_8? ( dev-lang/python:3.8 ) >=dev-lang/python-exec-2:=[python_targets_python3_7(-)?,python_targets_python3_8(-)?,-python_single_target_python3_7(-),-python_single_target_python3_8(-)] >=dev-python/setuptools-42.0.2[python_targets_python3_7(-)?,python_targets_python3_8(-)?,-python_single_target_python3_7(-),-python_single_target_python3_8(-)]
+DEFINED_PHASES=compile configure install postinst postrm prepare test
+DEPEND=dev-python/PyQt5[gui,network,printsupport,svg,widgets,python_targets_python3_7(-)?,python_targets_python3_8(-)?,-python_single_target_python3_7(-),-python_single_target_python3_8(-)] >=dev-python/python-ly-0.9.4[python_targets_python3_7(-)?,python_targets_python3_8(-)?,-python_single_target_python3_7(-),-python_single_target_python3_8(-)] dev-python/python-poppler-qt5[python_targets_python3_7(-)?,python_targets_python3_8(-)?,-python_single_target_python3_7(-),-python_single_target_python3_8(-)] >=media-sound/lilypond-2.14.2 svg? ( dev-python/PyQt5[webkit] ) portmidi? ( >=media-libs/portmidi-217-r3[python_targets_python3_7(-)?,python_targets_python3_8(-)?,-python_single_target_python3_7(-),-python_single_target_python3_8(-)] )
+DESCRIPTION=A LilyPond sheet music text editor
+EAPI=7
+HOMEPAGE=http://www.frescobaldi.org/
+INHERIT=distutils-r1 gnome2-utils xdg-utils
+IUSE=svg portmidi python_targets_python3_7 python_targets_python3_8
+KEYWORDS=amd64 x86
+LICENSE=GPL-2
+RDEPEND=dev-python/PyQt5[gui,network,printsupport,svg,widgets,python_targets_python3_7(-)?,python_targets_python3_8(-)?,-python_single_target_python3_7(-),-python_single_target_python3_8(-)] >=dev-python/python-ly-0.9.4[python_targets_python3_7(-)?,python_targets_python3_8(-)?,-python_single_target_python3_7(-),-python_single_target_python3_8(-)] dev-python/python-poppler-qt5[python_targets_python3_7(-)?,python_targets_python3_8(-)?,-python_single_target_python3_7(-),-python_single_target_python3_8(-)] >=media-sound/lilypond-2.14.2 svg? ( dev-python/PyQt5[webkit] ) portmidi? ( >=media-libs/portmidi-217-r3[python_targets_python3_7(-)?,python_targets_python3_8(-)?,-python_single_target_python3_7(-),-python_single_target_python3_8(-)] ) x11-themes/tango-icon-theme python_targets_python3_7? ( dev-lang/python:3.7 ) python_targets_python3_8? ( dev-lang/python:3.8 ) >=dev-lang/python-exec-2:=[python_targets_python3_7(-)?,python_targets_python3_8(-)?,-python_single_target_python3_7(-),-python_single_target_python3_8(-)]
+REQUIRED_USE=|| ( python_targets_python3_7 python_targets_python3_8 )
+SLOT=0
+SRC_URI=https://github.com/wbsoft/frescobaldi/releases/download/v3.0.0/frescobaldi-3.0.0.tar.gz
+_eclasses_=multiprocessing	cac3169468f893670dac3e7cb940e045	toolchain-funcs	24921b57d6561d87cbef4916a296ada4	multilib	d410501a125f99ffb560b0c523cd3d1e	multibuild	6b3d5ee849dafe6cdfd7b859c211fb01	python-utils-r1	d273d56dc725880edbeb1f6389faf5f1	python-r1	26e4ad0a4190b14f70973dc253e86535	distutils-r1	f0ca511df3fddd316b783632b804e8fb	edos2unix	33e347e171066657f91f8b0c72ec8773	l10n	8cdd85e169b835d518bc2fd59f780d8e	wrapper	4251d4c84c25f59094fd557e0063a974	eutils	2d5b3f4b315094768576b6799e4f926e	xdg-utils	ff2ff954e6b17929574eee4efc5152ba	gnome2-utils	c8e3fff820d850c0e003e22208d2eea3
+_md5_=7f25ff70cd8e689ffa4a447ffca531cc
