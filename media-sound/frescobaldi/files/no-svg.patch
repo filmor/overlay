@@ -1,25 +1,8 @@
-diff --git a/frescobaldi_app/app.py b/frescobaldi_app/app.py
-index 35e69bbe..eb5516d2 100644
---- a/frescobaldi_app/app.py
-+++ b/frescobaldi_app/app.py
-@@ -29,12 +29,6 @@ import sys
- from PyQt5.QtCore import QSettings, Qt, QThread
- from PyQt5.QtWidgets import QApplication
- 
--### needed for QWebEngine
--### it wants those two things be done before constructing QApplication()
--import PyQt5.QtWebEngineWidgets
--QApplication.setAttribute(Qt.AA_ShareOpenGLContexts, True)
--### end needed for QWebEngine
--
- import appinfo
- 
- qApp = None                     # instantiate() puts the QApplication obj. here
 diff --git a/frescobaldi_app/menu.py b/frescobaldi_app/menu.py
-index a6f1d69c..e2ff3d9a 100644
+index bf983624..932d0a9c 100644
 --- a/frescobaldi_app/menu.py
 +++ b/frescobaldi_app/menu.py
-@@ -493,8 +493,8 @@ def menu_help(mainwindow):
+@@ -494,8 +494,8 @@ def menu_help(mainwindow):
      m.addAction(ac.help_manual)
      m.addAction(ac.help_whatsthis)
      m.addSeparator()
