@@ -6,7 +6,7 @@ EAPI=7
 inherit systemd tmpfiles go-module
 
 DESCRIPTION="Wayland clipboard manager"
-HOMEPAGE="https://tailscale.com"
+HOMEPAGE="https://github.com/yory8/clipman"
 LICENSE="MIT"
 
 SLOT="0"
