@@ -15,10 +15,10 @@ inherit cmake docs edo flag-o-matic multiprocessing rocm llvm-r1 python-r1
 DESCRIPTION="AMD's graph inference engine"
 HOMEPAGE="https://github.com/ROCm/AMDMIGraphX"
 SRC_URI="https://github.com/ROCm/AMDMIGraphX/archive/rocm-${PV}.tar.gz -> rocm-${P}.tar.gz"
-S="${WORKDIR}/${PN}-rocm-${PV}"
+S="${WORKDIR}/AMDMIGraphX-rocm-${PV}"
 
 LICENSE="BSD"
-SLOT="0/$(ver_cut 1-2)"
+SLOT="0/6.4"
 KEYWORDS="~amd64"
 IUSE="python"
 REQUIRED_USE="${ROCM_REQUIRED_USE}"
@@ -30,12 +30,14 @@ BDEPEND="
 DEPEND="
 	>=dev-cpp/msgpack-cxx-6.0.0
 	dev-util/hip:${SLOT}
-	dev-util/rocBLAS:${SLOT}
+	sci-libs/rocBLAS:${SLOT}
 	sci-libs/miopen:${SLOT}
-	sci-libs/hipBLASlt:${SLOT}
+	sci-libs/hipBLAS:${SLOT}
+	sci-libs/hipBLASLt:${SLOT}
+	sci-libs/composable-kernel:${SLOT}
 	dev-libs/half
-	dev-libs/nlohmann_json
-	dev-libs/sqlite3
+	dev-cpp/nlohmann_json
+	dev-db/sqlite
 	dev-libs/protobuf
 
 	python? (
@@ -53,7 +55,8 @@ PATCHES=(
 
 src_prepare() {
 	cmake_src_prepare
-	sed -e "s:,-rpath=.*\":\":" -i clients/CMakeLists.txt || die
+	sed -e "s:,-rpath=.*\":\":" -i CMakeLists.txt || die
+	sed -e "s:msgpackc-cxx:msgpack-cxx:" -i src/CMakeLists.txt || die
 }
 
 src_configure() {
@@ -67,7 +70,9 @@ src_configure() {
 		-DCMAKE_SKIP_RPATH=ON
 		-DBUILD_FILE_REORG_BACKWARD_COMPATIBILITY=OFF
 		-DROCM_SYMLINK_LIBS=OFF
-		-DAMDGPU_TARGETS="$(get_amdgpu_flags)"
+		-DMIGRAPHX_GPU_ENABLE=ON
+		-DMIGRAPHX_CPU_ENABLE=ON
+		-DGPU_TARGETS="$(get_amdgpu_flags)"
 		-DCMAKE_INSTALL_INCLUDEDIR="include/migraphx"
 		-DMIGRAPHX_ENABLE_PYTHON="$(usex python ON OFF)"
 		-DBUILD_CLIENTS_SAMPLES=OFF
