@@ -13,7 +13,7 @@ S="${WORKDIR}/snapcast-${PV}"
 LICENSE="GPL-3+"
 SLOT="0"
 KEYWORDS="amd64 arm ppc ppc64 ~riscv x86"
-IUSE="alsa +client +expat +flac jack +opus pulseaudio soxr test tremor +vorbis +zeroconf"
+IUSE="+alsa +flac +opus pulseaudio soxr test tremor +vorbis +zeroconf"
 RESTRICT="!test? ( test )"
 
 RDEPEND="
@@ -42,6 +42,9 @@ src_configure() {
 	local mycmakeargs=(
 		-DBUILD_SERVER=OFF
 		-DBUILD_CLIENT=ON
+		# -DBUILD_WITH_ALSA=$(usex alsa)
+		-DBUILD_WITH_PULSE=$(usex pulseaudio)
+		-DBUILD_WITH_SOXR=$(usex soxr)
 		-DBUILD_WITH_FLAC=$(usex flac)
 		-DBUILD_WITH_OPUS=$(usex opus)
 		-DBUILD_WITH_TREMOR=$(usex tremor)
