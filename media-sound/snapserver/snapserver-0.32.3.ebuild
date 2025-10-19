@@ -13,7 +13,7 @@ S="${WORKDIR}/snapcast-${PV}"
 LICENSE="GPL-3+"
 SLOT="0"
 KEYWORDS="amd64 arm ppc ppc64 ~riscv x86"
-IUSE="+alsa +client +expat +flac jack +opus soxr test tremor +vorbis +zeroconf"
+IUSE="+alsa +expat +flac jack +opus soxr test tremor +vorbis +zeroconf"
 RESTRICT="!test? ( test )"
 
 RDEPEND="
