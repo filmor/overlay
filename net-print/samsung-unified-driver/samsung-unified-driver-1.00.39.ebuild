@@ -1,17 +1,16 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=8
 
 inherit linux-info udev vcs-snapshot
 
-EXTRA_PV=00.99
-MY_P=uld_v${PV}_${EXTRA_PV}
+EXTRA_PV=01.17
+MY_P=uld_V${PV}_${EXTRA_PV}
 
 DESCRIPTION="Samsung Unified Linux Driver for printers and MFDs"
 HOMEPAGE="http://www.samsung.com"
-SRC_URI="http://ftp.hp.com/pub/softlib/software13/printers/SS/SL-M2070/${MY_P}.tar.gz"
-
+SRC_URI="https://ftp.hp.com/pub/softlib/software13/printers/SS/SL-C4010ND/${MY_P}.tar.gz"
 LICENSE="Samsung-EULA"
 SLOT="0"
 KEYWORDS="-* ~amd64 ~x86"
