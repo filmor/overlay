@@ -1,14 +1,14 @@
 # Copyright 1999-2019 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=8
 
-inherit eutils desktop xdg-utils
+inherit xdg-utils
 
 EXEC_NAME=X-AIR-Edit
 DESCRIPTION="Editor for X-Air and M-Air mixers"
 HOMEPAGE="https://www.music-group.com"
-BASE_URI="https://downloads.music-group.com/software/behringer/XAIR/"
+BASE_URI="https://cdn.mediavalet.com/aunsw/musictribe/VX4UkGFjQ0a1DH2Q8zg3sg/_KJ6tGIG7kGVqPxP-OsnLQ/Original/"
 SRC_URI="amd64? ( ${BASE_URI}/X-AIR-Edit_LINUX_X64_V${PV}.tar.gz )
 	x86? ( ${BASE_URI}/X-AIR-Edit_LINUX_V${PV}.tar.gz )"
 RESTRICT="mirror strip bindist"
