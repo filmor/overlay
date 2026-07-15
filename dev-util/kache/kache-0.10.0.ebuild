@@ -787,20 +787,25 @@ SLOT="0"
 KEYWORDS="~amd64"
 
 src_install() {
-	# 1. First, invoke the standard build-system install (cargo, cmake, etc.)
-	# This installs the actual /usr/bin/kache binary
 	cargo_src_install
 
-	# 2. Create an isolated wrapper directory (mimicking how ccache does it)
+	# Create an isolated wrapper directory (mimicking how ccache does it)
 	# This prevents polluting /usr/bin directly if you prefer clean PATH injection
 	local wrapperdir="/usr/lib/kache/bin"
 	dodir "${wrapperdir}"
 
-	# 3. Create the standard compiler wrappers pointing to the main kache binary
-	# dosym -r creates a relative symlink from the target to the link location
 	local compiler
 	for compiler in cc c++ gcc g++ clang clang++; do
-		dosym -r /usr/bin/kache "${wrapperdir}/${compiler}"
+		# Create a tiny script wrapper for each compiler target
+		cat <<-EOF > "${T}/${compiler}"
+			#!/bin/sh
+			exec /usr/bin/kache ${compiler} "\$@"
+		EOF
+
+		# Install the wrapper script with executable permissions
+		insinto "${wrapperdir}"
+		doins "${T}/${compiler}"
+		fperms 0755 "${wrapperdir}/${compiler}"
 	done
 }
 
@@ -808,18 +813,18 @@ pkg_postinst() {
 	# Define our shared cache location
 	local cache_dir="${EROOT}/var/cache/kache"
 
-	# 4. Check if the directory exists; if not, create it on the live filesystem
+	# Check if the directory exists; if not, create it on the live filesystem
 	if [[ ! -d "${cache_dir}" ]]; then
 		einfo "Creating global kache storage directory at ${cache_dir}"
 		mkdir -p "${cache_dir}" || die "Failed to create ${cache_dir}"
 	fi
 
-	# 5. Fix ownership and permissions so the 'portage' group can write to it
+	# Fix ownership and permissions so the 'portage' group can write to it
 	# 2775 sets the setgid bit so new files inherit the 'portage' group ownership
 	chown -R portage:portage "${cache_dir}" || ewarn "Could not set ownership on ${cache_dir}"
 	chmod 2775 "${cache_dir}" || ewarn "Could not set permissions on ${cache_dir}"
 
-	# 6. Pre-initialize the SQLite database to WAL mode right away to save hassles later
+	# Pre-initialize the SQLite database to WAL mode right away to save hassles later
 	if [[ -x $(type -P sqlite3) && ! -f "${cache_dir}/index.db" ]]; then
 		einfo "Pre-initializing index database with WAL optimization..."
 		# Create an empty db file with WAL flag enabled
