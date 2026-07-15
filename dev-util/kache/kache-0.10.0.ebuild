@@ -789,7 +789,7 @@ KEYWORDS="~amd64"
 src_install() {
 	# 1. First, invoke the standard build-system install (cargo, cmake, etc.)
 	# This installs the actual /usr/bin/kache binary
-	default
+	cargo_src_install
 
 	# 2. Create an isolated wrapper directory (mimicking how ccache does it)
 	# This prevents polluting /usr/bin directly if you prefer clean PATH injection
