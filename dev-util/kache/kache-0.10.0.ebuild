@@ -568,8 +568,8 @@ CRATES="
 	snap@1.1.1
 	socket2@0.6.4
 	spade@2.15.1
-	spin@0.10.0
-	spin@0.9.8
+	spin@0.10.1
+	spin@0.9.9
 	spki@0.7.3
 	sqlite-wasm-rs@0.5.5
 	ssh-agent-client-rs@1.1.3
@@ -772,6 +772,7 @@ inherit cargo
 DESCRIPTION="Zero-copy, content-addressed build cache for Rust, C/C++ and more. No copies, no wasted disk — just hardlinks locally and S3 for sharing."
 HOMEPAGE="https://kunobi.ninja/docs/kache"
 SRC_URI="
+	https://github.com/kunobi-ninja/kache/archive/refs/tags/v${PV}.tar.gz
 	${CARGO_CRATE_URIS}
 "
 
@@ -784,37 +785,3 @@ LICENSE+="
 "
 SLOT="0"
 KEYWORDS="~amd64"
-
-
-src_install() {
-	default
-
-	einfo "Creating compiler wrapper symlinks in /usr/lib/kache/bin..."
-	local wrapperdir="/usr/lib/kache/bin"
-	dodir "${wrapperdir}"
-
-	local compiler
-	for compiler in cc c++ gcc g++ clang clang++; do
-		dosym -r /usr/bin/kache "${wrapperdir}/${compiler}"
-	done
-}
-
-pkg_postinst() {
-	# Define our shared cache location
-	local cache_dir="${EROOT}/var/cache/kache"
-
-	if [[ ! -d "${cache_dir}" ]]; then
-		einfo "Creating global kache storage directory at ${cache_dir}"
-		mkdir -p "${cache_dir}" || die "Failed to create ${cache_dir}"
-	fi
-
-	chown -R portage:portage "${cache_dir}" || ewarn "Could not set ownership on ${cache_dir}"
-	chmod 2775 "${cache_dir}" || ewarn "Could not set permissions on ${cache_dir}"
-
-	# Pre-initialize the SQLite database to WAL mode
-	if [[ -x $(type -P sqlite3) && ! -f "${cache_dir}/index.db" ]]; then
-		einfo "Pre-initializing index database with WAL optimization..."
-		# Create an empty db file with WAL flag enabled
-		su -s /bin/sh portage -c "sqlite3 \"${cache_dir}/index.db\" 'PRAGMA journal_mode=WAL;'" &>/dev/null
-	fi
-}
