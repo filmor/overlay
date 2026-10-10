@@ -6,6 +6,7 @@
 EAPI=8
 
 CRATES="
+	aes@0.8.4
 	ahash@0.8.12
 	aho-corasick@1.1.5
 	allocator-api2@0.2.21
@@ -22,10 +23,12 @@ CRATES="
 	arrayvec@0.7.8
 	assert_cmd@2.2.2
 	async-trait@0.1.92
-	asyncband@0.6.7
+	asyncband@0.7.2
 	atomic-waker@1.1.2
 	atomic@0.6.1
 	autocfg@1.5.1
+	aws-lc-rs@1.18.1
+	aws-lc-sys@0.45.0
 	axum-core@0.5.6
 	axum@0.8.9
 	backon@1.6.0
@@ -41,14 +44,17 @@ CRATES="
 	blake3@1.8.7
 	block-buffer@0.10.4
 	block-buffer@0.12.1
+	block-padding@0.3.3
 	bs58@0.5.1
 	bstr@1.13.1
+	buffa@0.9.2
 	bumpalo@3.20.3
 	by_address@1.2.1
 	bytemuck@1.25.2
 	bytes@1.12.1
 	bytesize@2.7.0
 	castaway@0.2.4
+	cbc@0.1.2
 	cc@1.4.5
 	cfg-if@1.0.4
 	cfg_aliases@0.2.2
@@ -60,6 +66,7 @@ CRATES="
 	clap_complete@4.6.9
 	clap_derive@4.6.4
 	clap_lex@1.1.0
+	cmake@0.1.58
 	cmov@0.5.4
 	colorchoice@1.0.5
 	combine@4.6.8
@@ -68,6 +75,8 @@ CRATES="
 	const-oid@0.9.6
 	const-random-macro@0.1.16
 	const-random@0.1.18
+	const_format@0.2.36
+	const_format_proc_macros@0.2.34
 	constant_time_eq@0.4.2
 	convert_case@0.10.0
 	core-foundation-sys@0.8.7
@@ -81,14 +90,17 @@ CRATES="
 	crossterm_winapi@0.9.1
 	crunchy@0.2.4
 	crypto-bigint@0.5.5
-	crypto-common@0.1.6
+	crypto-common@0.1.7
 	crypto-common@0.2.2
 	csscolorparser@0.6.2
 	ctutils@0.4.2
 	curve25519-dalek-derive@0.1.1
 	curve25519-dalek@4.1.3
+	darling@0.20.11
 	darling@0.24.1
+	darling_core@0.20.11
 	darling_core@0.24.1
+	darling_macro@0.20.11
 	darling_macro@0.24.1
 	defmt-macros@1.1.1
 	defmt-parser@1.0.0
@@ -96,6 +108,9 @@ CRATES="
 	deltae@0.3.2
 	der@0.7.10
 	deranged@0.5.8
+	derive_builder@0.20.2
+	derive_builder_core@0.20.2
+	derive_builder_macro@0.20.2
 	derive_more-impl@2.1.1
 	derive_more@2.1.1
 	difflib@0.4.0
@@ -105,8 +120,10 @@ CRATES="
 	dirs@7.0.0
 	displaydoc@0.2.7
 	dlv-list@0.5.2
+	docker_credential@1.4.0
 	doctest-file@1.1.1
 	document-features@0.2.12
+	dunce@1.0.5
 	dyn-clone@1.0.20
 	ecdsa@0.16.9
 	ed25519-dalek@2.2.0
@@ -131,8 +148,10 @@ CRATES="
 	fixedbitset@0.4.2
 	float-cmp@0.10.0
 	fnv@1.0.7
+	foldhash@0.1.5
 	foldhash@0.2.0
 	form_urlencoded@1.2.2
+	fs_extra@1.3.0
 	futures-channel@0.3.34
 	futures-core@0.3.34
 	futures-executor@0.3.34
@@ -142,16 +161,19 @@ CRATES="
 	futures-task@0.3.34
 	futures-util@0.3.34
 	futures@0.3.34
-	generic-array@0.14.9
+	generator@0.8.10
+	generic-array@0.14.7
 	getrandom@0.2.17
 	getrandom@0.3.4
 	getrandom@0.4.3
+	getset@0.1.7
 	glob@0.3.4
 	gloo-timers@0.3.0
 	granit-parser@0.0.7
 	group@0.13.0
 	hashbrown@0.12.3
 	hashbrown@0.14.5
+	hashbrown@0.15.5
 	hashbrown@0.16.1
 	hashbrown@0.17.1
 	hashlink@0.12.2
@@ -161,6 +183,7 @@ CRATES="
 	hmac@0.12.1
 	hmac@0.13.0
 	home@0.5.12
+	http-auth@0.1.10
 	http-body-util@0.1.5
 	http-body@1.1.0
 	http@1.5.0
@@ -190,6 +213,8 @@ CRATES="
 	instability@0.3.13
 	interprocess@2.4.4
 	ipnet@2.12.2
+	is-docker@0.2.0
+	is-wsl@0.4.0
 	is_terminal_polyfill@1.70.2
 	itertools@0.10.5
 	itertools@0.14.0
@@ -206,12 +231,16 @@ CRATES="
 	jobserver@0.1.35
 	js-sys@0.3.105
 	jsonpath-rust@1.0.10
-	jsonwebtoken@9.3.1
+	jsonwebtoken@11.1.0
 	k8s-openapi@0.28.0
 	kasuari@0.4.12
+	konst@0.2.20
+	konst_macro_rules@0.2.19
 	kube-client@4.2.0
 	kube-core@4.2.0
 	kube@4.2.0
+	kunobi-auth@1.0.0
+	kunobi-daemon@0.9.0
 	lab@0.11.0
 	lazy_static@1.5.0
 	libc@0.2.189
@@ -224,13 +253,13 @@ CRATES="
 	litrs@1.0.0
 	lock_api@0.4.14
 	log@0.4.34
+	loom@0.7.2
 	lru-slab@0.1.2
 	lru@0.18.4
 	mac_address@1.1.8
 	matchers@0.2.0
 	matchit@0.8.4
 	md-5@0.11.0
-	mea@0.6.7
 	memchr@2.8.3
 	memmem@0.1.1
 	memoffset@0.9.1
@@ -240,10 +269,12 @@ CRATES="
 	multiversion-macros@0.8.0
 	multiversion@0.8.0
 	multiversion_no_op@1.0.0
+	mutants@0.0.4
 	nix@0.29.0
 	nohash-hasher@0.2.0
 	nom@7.1.3
 	normalize-line-endings@0.3.0
+	ntapi@0.4.3
 	nu-ansi-term@0.50.3
 	num-bigint-dig@0.8.6
 	num-bigint@0.4.8
@@ -254,13 +285,20 @@ CRATES="
 	num-traits@0.2.19
 	num_threads@0.1.7
 	oauth2@5.0.0
+	objc2-core-foundation@0.3.2
+	objc2-io-kit@0.3.2
+	oci-client@0.18.0
+	oci-spec@0.10.0
+	olpc-cjson@0.1.4
 	once_cell@1.21.4
 	once_cell_polyfill@1.70.2
-	opendal-core@0.58.2
-	opendal-http-transport-reqwest@0.58.2
-	opendal-layer-retry@0.58.2
-	opendal-service-fs@0.58.2
-	opendal-service-s3@0.58.2
+	open@5.4.4
+	opendal-core@0.59.3
+	opendal-http-transport-reqwest@0.59.3
+	opendal-layer-retry@0.59.3
+	opendal-service-fs@0.59.3
+	opendal-service-gcs@0.59.3
+	opendal-service-s3@0.59.3
 	openidconnect@4.0.1
 	openssl-probe@0.2.1
 	option-ext@0.2.0
@@ -275,6 +313,7 @@ CRATES="
 	palette_math@0.7.7
 	parking_lot@0.12.5
 	parking_lot_core@0.9.12
+	pbkdf2@0.12.2
 	pem-rfc7468@0.7.0
 	pem@3.0.6
 	percent-encoding@2.3.2
@@ -289,6 +328,7 @@ CRATES="
 	phf_shared@0.11.3
 	pin-project-lite@0.2.17
 	pkcs1@0.7.5
+	pkcs5@0.7.1
 	pkcs8@0.10.2
 	pkg-config@0.3.34
 	portable-atomic-util@0.2.8
@@ -306,6 +346,7 @@ CRATES="
 	protobuf-support@3.7.2
 	protobuf@3.7.2
 	quick-xml@0.41.0
+	quick-xml@0.42.0
 	quinn-proto@0.11.17
 	quinn-udp@0.5.15
 	quinn@0.11.11
@@ -337,10 +378,11 @@ CRATES="
 	regex-automata@0.4.18
 	regex-syntax@0.8.11
 	regex@1.13.1
-	reqsign-aws-core@3.1.1
-	reqsign-aws-v4@3.3.0
-	reqsign-core@3.3.1
-	reqsign-file-read-tokio@3.0.6
+	reqsign-aws-core@3.2.0
+	reqsign-aws-v4@3.3.1
+	reqsign-core@3.3.2
+	reqsign-file-read-tokio@3.0.7
+	reqsign-google@3.2.0
 	reqwest@0.12.28
 	reqwest@0.13.5
 	rfc6979@0.4.0
@@ -357,14 +399,17 @@ CRATES="
 	rustls-platform-verifier-android@0.1.1
 	rustls-platform-verifier@0.7.0
 	rustls-webpki@0.103.15
-	rustls@0.23.44
+	rustls@0.23.45
 	rustversion@1.0.23
 	ryu@1.0.23
+	salsa20@0.10.2
 	same-file@1.0.6
 	schannel@0.1.29
 	schemars@0.9.0
 	schemars@1.2.2
+	scoped-tls@1.0.1
 	scopeguard@1.2.0
+	scrypt@0.11.0
 	sec1@0.7.3
 	secrecy@0.10.3
 	security-framework-sys@2.17.0
@@ -397,6 +442,7 @@ CRATES="
 	siphasher@1.0.3
 	slab@0.4.12
 	smallvec@1.15.2
+	smoothutf8@0.2.3
 	socket2@0.6.5
 	spin@0.10.1
 	spin@0.9.9
@@ -409,7 +455,9 @@ CRATES="
 	stable_deref_trait@1.2.1
 	static_assertions@1.1.0
 	strsim@0.11.1
+	strum@0.27.2
 	strum@0.28.0
+	strum_macros@0.27.2
 	strum_macros@0.28.0
 	subtle@2.6.1
 	syn@1.0.109
@@ -417,6 +465,7 @@ CRATES="
 	syn@3.0.5
 	sync_wrapper@1.0.2
 	synstructure@0.13.2
+	sysinfo@0.38.4
 	tar@0.4.46
 	target-features@0.1.6
 	tempfile@3.27.0
@@ -458,11 +507,13 @@ CRATES="
 	typenum@1.20.1
 	ucd-trie@0.1.7
 	unarray@0.1.4
+	unicase@2.9.0
 	unicode-ident@1.0.24
 	unicode-normalization@0.1.25
 	unicode-segmentation@1.13.3
 	unicode-truncate@2.0.1
 	unicode-width@0.2.2
+	unicode-xid@0.2.6
 	untrusted@0.9.0
 	url@2.5.8
 	utf8_iter@1.0.4
@@ -498,15 +549,20 @@ CRATES="
 	winapi-util@0.1.11
 	winapi-x86_64-pc-windows-gnu@0.4.0
 	winapi@0.3.9
+	windows-collections@0.3.2
 	windows-core@0.62.2
+	windows-future@0.3.2
 	windows-implement@0.60.2
 	windows-interface@0.59.3
 	windows-link@0.2.1
+	windows-numerics@0.3.1
 	windows-result@0.4.1
 	windows-strings@0.5.1
 	windows-sys@0.52.0
 	windows-sys@0.61.2
 	windows-targets@0.52.6
+	windows-threading@0.2.1
+	windows@0.62.2
 	windows_aarch64_gnullvm@0.52.6
 	windows_aarch64_msvc@0.52.6
 	windows_i686_gnu@0.52.6
@@ -526,6 +582,7 @@ CRATES="
 	zerofrom-derive@0.1.7
 	zerofrom@0.1.8
 	zeroize@1.9.0
+	zeroize_derive@1.5.0
 	zerotrie@0.2.5
 	zerovec-derive@0.11.6
 	zerovec@0.11.8
@@ -536,7 +593,6 @@ CRATES="
 "
 
 declare -A GIT_CRATES=(
-	[kunobi-auth]='https://github.com/kunobi-ninja/kunobi-auth;17bc3045e90031cc93ae54fa860ac495267a52d2;kunobi-auth-%commit%'
 	[kunobi-ha]='https://github.com/kunobi-ninja/kunobi-ha;7483b43341c5451e76d1f28d658c2ccde99c1b76;kunobi-ha-%commit%'
 )
 
@@ -545,7 +601,7 @@ inherit cargo
 DESCRIPTION="Zero-copy, content-addressed build cache for Rust, C/C++ and more, with S3 and shared-filesystem remotes."
 HOMEPAGE="https://kunobi.ninja/docs/kache"
 SRC_URI="
-	https://github.com/kunobi-ninja/kache/archive/refs/tags/v${PV}.tar.gz
+	https://github.com/kunobi-ninja/kache/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz
 	${CARGO_CRATE_URIS}
 "
 
