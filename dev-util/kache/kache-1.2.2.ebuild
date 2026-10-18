@@ -399,7 +399,7 @@ CRATES="
 	rustls-platform-verifier-android@0.1.1
 	rustls-platform-verifier@0.7.0
 	rustls-webpki@0.103.15
-	rustls@0.23.45
+	rustls@0.23.46
 	rustversion@1.0.23
 	ryu@1.0.23
 	salsa20@0.10.2
@@ -492,6 +492,7 @@ CRATES="
 	tokio@1.53.1
 	toml@1.1.5+spec-1.1.0
 	toml_datetime@1.1.1+spec-1.1.0
+	toml_edit@0.25.15+spec-1.1.0
 	toml_parser@1.1.3+spec-1.1.0
 	toml_writer@1.1.2+spec-1.1.0
 	tower-http@0.6.11
@@ -598,7 +599,7 @@ declare -A GIT_CRATES=(
 
 inherit cargo
 
-DESCRIPTION="Zero-copy, content-addressed build cache for Rust, C/C++ and more, with S3 and shared-filesystem remotes."
+DESCRIPTION="Compiler cache for Rust, C/C++ and CUDA, with S3, GCS, shared-filesystem and OCI remotes."
 HOMEPAGE="https://kunobi.ninja/docs/kache"
 SRC_URI="
 	https://github.com/kunobi-ninja/kache/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz
